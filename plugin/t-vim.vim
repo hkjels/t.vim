@@ -1,10 +1,8 @@
-" T location
+" Ntask location
 if !exists("g:t")
-	let g:tprg="t find -C -G"
+	let g:tprg="t find -C -G "
 endif
 
-
-" T
 function! s:T(cmd, args)
     redraw
     echo "Searching ..."
@@ -47,3 +45,6 @@ function! s:T(cmd, args)
 endfunction
 
 command! -bang -nargs=* -complete=file T call s:T('grep<bang>',<q-args>)
+
+" Update Ntask with changes from the active buffer upon save
+:autocmd BufWritePost * silent !t update % -q
